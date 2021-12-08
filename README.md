@@ -4,8 +4,6 @@
 ## Autumn 2020
 
 
-## Due: Sunday, December 6th by midnight on GitHub
-
 ### Project Introduction:
 
 Transgender folx in the US have uncomfortably large homocide rates. The purpose of this project is not only to represent the visualizations of these homicides, but to promote more academic research on the LGBTQ+ community. 

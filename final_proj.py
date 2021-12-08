@@ -22,7 +22,6 @@ import json
 import us
 
 
-# In[5]:
 
 
 #do file loading processes
@@ -31,7 +30,6 @@ state_names = us.states.mapping('abbr','name')
 def load_parse_Data(path):
     trans_homicide= pd.read_csv(os.path.join(path, 'Trans_Homicide_2020_copy.csv'), engine = 'python', skipinitialspace=True) 
     trans_homicide['city'], trans_homicide['state'] = trans_homicide['City, State'].str.split(',',1).str
-    #trans_homicide = trans_homicide['state'].replace(to_replace='Puerto Rico', value = 'PR')
     return trans_homicide
 
 
@@ -50,7 +48,6 @@ trans_homicide = load_parse_Data(path)
 trans_homicide = trans_homicide.drop('City, State', axis = 1)
 trans_homicide['state'] = trans_homicide['state'].str.replace('Puerto Rico','PR')
 trans_homicide.columns = ['year','Name','city','state']
-#print(trans_homicide.state)
 trans_homicide = trans_homicide.set_index('year')
 for k,v in state_names.items():
     trans_homicide['state'] = trans_homicide['state'].replace(k,v, regex=True)
@@ -66,10 +63,8 @@ for i in state_list:
     clean = i.lstrip()
     cleaned_state.append(clean)
 print(cleaned_state)
-#<class 'pandas.core.frame.DataFrame'>
 
 
-# In[11]:
 
 
 #prepare geospatial data
@@ -81,39 +76,12 @@ states = gpd.read_file(url)
 print(states)
 
 
-# In[23]:
 
-
-#states = states.iloc[states['NAME'].sort_values().index.values]
-#print(states)
-#test = states.loc[states['NAME'].apply( lambda x : x for x in state_list)]
-#states['counts'] = counts_2020['count']
-#test = states.iloc[states['NAME'].sort_values().index.values]
-#test = test[test.NAME.isin(state_list)]
-
-#test = drop_irrel(state_list, states,'NAME')
 test = states.loc[states['NAME'].isin(['Arkansas', 'California', 'Colorado', 'Florida', 'Illinois', 'Louisiana', 'Maryland', 'Missouri', 'New York', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Puerto Rico', 'Texas', 'Washington'])]
-#test = states.iloc[states['NAME'].sort_values().index.values]
 test = test.sort_values(by='NAME')
 print(test)
 
-#for i in states.NAME:
- #   for t in state_list:
-  #      new_states = states[states.NAME != t]
-        
-#print(new_states)
-#states = states[['NAME','geometry']]
-#states = states.iloc[states['NAME'].sort_values().index.values]
-#test = states[states['NAME'].isin(state_list)]
-#states['counts'] = counts_2020['count']
-#print(states)
-#states = states.merge(counts_2020, on = "NAME")
 
-#new_DF = states.drop(states[states['NAME'].isin(state_list))
-#print(test)
-
-
-# In[ ]:
 
 
 #drop states that did not have any record in their year
@@ -121,7 +89,6 @@ print(test)
 print(states)
 
 
-# In[ ]:
 
 
 # recreate choropleth map of the united states
@@ -142,7 +109,6 @@ ax.axis('off')
 ax.set_title('US Transgender Homicides in 2020');
 
 
-# In[ ]:
 
 
 

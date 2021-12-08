@@ -1,6 +1,5 @@
 # PPHA 30536: Data and Programming for Public Policy II
-# Submission by: Ricardo Saucedo
-
+## Submission by: Ricardo Saucedo
 ## Final Project: Reproducible Research
 ## Autumn 2020
 
